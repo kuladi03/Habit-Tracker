@@ -1,14 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Habit-Tracker/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>habit-tracker</title>
+    
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="/Habit-Tracker/manifest.json" />
+    
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#ffffff" />
+    
+    <title>CloudSync Habit Tracker</title>
     <script type="module" crossorigin src="/Habit-Tracker/assets/index-CaQrATLR.js"></script>
     <link rel="stylesheet" crossorigin href="/Habit-Tracker/assets/index-BqcGCLGc.css">
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('Worker registered: ', registration.scope);
+            })
+            .catch((err) => {
+              console.log('Worker registration failed: ', err);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
